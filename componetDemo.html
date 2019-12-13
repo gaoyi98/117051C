@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+
+
+        <!-- <h1>{{article.title}}</h1>
+        <h2>作者：{{article.author}}</h2>
+         <h3>{{article.publishDate}}</h3>
+         <img :src="article.imgSrc" style="width:100px;height:50px"/>
+         <p>
+                {{article.content}}
+         </p> -->
+
+         <!-- heart是组件的一个属性，那么组件必须通过props声明这个属性 -->
+         <niu v-for="artical in articalList" :key="artical.title"  :heart="artical"></niu>>
+    </div>
+    <script>
+        //定义niuniu这个自定义组件
+        //第一个参数是自定义组件的标签名称，第二参数是定义该组件的运行规则
+        Vue.component('niu',{
+            props:['heart'],
+            //template中定义的是组件的模板，也就是html和{{}}以及vue指令的组合
+            //template必须要有根标签，例如<h1><h2>不合法，<div><h1></h1><h2></h2></div>合法
+            template:'<div>'+
+            '<h1>{{heart.title}}</h1>'+
+            '<h2>作者：{{heart.author}}</h2>'+
+            '<h3>时间：{{heart.publishDate}}</h3>'+
+            '<p>{{heart.content}}</p>'+
+            '</div>'
+        });
+        var app=new Vue({
+            el:"#app",
+            data:{
+                articalList:[
+                    {
+                    title:"牛牛为啥是只熊猫",
+                    author:"饲养员1号",
+                    publishDate:"2019-10-9",
+                    content:"因为他是个傻子哈哈哈哈哈哈哈哈",
+                    imgSrc:"https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3768041468,995014679&fm=26&gp=0.jpg"
+                },
+                {
+                    title:"今天吃了啥",
+                    author:"饲养员1号",
+                    publishDate:"2019-11-8",
+                    content:"烤鸭和各种肉类",
+                    imgSrc:"https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3768041468,995014679&fm=26&gp=0.jpg"
+                },
+                {
+                    title:"妈妈打我了吗",
+                    author:"饲养员1号",
+                    publishDate:"2019-2-8",
+                    content:"妈妈天天打我，受不鸟",
+                    imgSrc:"https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3768041468,995014679&fm=26&gp=0.jpg"
+                },
+                {
+                    title:"我和我的兄弟打架了吗",
+                    author:"饲养员1号",
+                    publishDate:"2019-7-5",
+                    content:"我和他们天天打架，他们就像神经病",
+                    imgSrc:"https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3768041468,995014679&fm=26&gp=0.jpg"
+                }
+            ]
+            }
+        })
+    </script>
+</body>
+</html>

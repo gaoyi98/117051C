@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+         <ul>
+             <li v-for="good in goodlist" v-bind:key="good.goodName">
+                 <span>{{good.goodName}}</span>
+                 <span>{{good.price}}</span>
+                 <span><input type="number" v-model="good.count"/></span>
+                 <span>{{good.price*good.count}}</span>
+                 
+             </li>
+             <h2>总价为：{{totalPrice}}元</h2>
+         </ul>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data:{
+                 goodlist:[
+                     {goodName:"熊猫",price:433,count:1},
+                     {goodName:"暖手宝",price:20,count:2},
+                     {goodName:"鞋子",price:100,count:1},
+                     {goodName:"毛衣",price:45,count:3},
+                 ]
+            },
+           watch:{
+               goodlist:{
+                   deep:true,
+                   handler:function(newVal){
+                       //newVal实际上指向了更新后的goodlist
+                    var result=0;  
+                     //good代表数组迭代出来的每一个good元素，index是他的数组索引
+                    newVal.forEach(function(good,index){
+                        result+=good.price*good.count;
+                    })
+                    this.totalPrice=result;
+                   }
+               }
+           }
+        })
+    </script>
+</body>
+</html>

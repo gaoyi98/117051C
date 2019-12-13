@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+       <niu-v2>
+         <template v-slot:title>
+             {{article.title}}
+         </template>
+         <template v-slot:author>
+                {{article.author}}
+            </template>
+            <template v-slot:date>
+                    {{article.publishDate}}
+                </template>
+                {{article.content}}
+       </niu-v2>
+
+        <!-- <h1>{{article.title}}</h1>
+        <h2>作者：{{article.author}}</h2>
+         <h3>{{article.publishDate}}</h3>
+         <img :src="article.imgSrc" style="width:100px;height:50px"/>
+         <p>
+                {{article.content}}
+         </p> -->
+
+         <!-- heart是组件的一个属性，那么组件必须通过props声明这个属性 -->
+         
+    </div>
+    <script>
+        
+        Vue.component('niu-v2',{
+
+            
+            template:'<div>'+
+            '<h1><slot name="title"></slot></h1>'+
+            '<h2><slot name="author"></slot></h2>'+
+            '<h3><slot name="date"></slot></h3>'+
+            '<slot></slot>'+
+            '</div>'
+        });
+        var app=new Vue({
+            el:"#app",
+            data:{
+                article:
+                    {
+                    title:"牛牛为啥是只熊猫",
+                    author:"饲养员1号",
+                    publishDate:"2019-10-9",
+                    content:"因为他是个傻子哈哈哈哈哈哈哈哈",
+                    imgSrc:"https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3768041468,995014679&fm=26&gp=0.jpg"
+                }
+               
+            }
+        })
+    </script>
+</body>
+</html>
